@@ -2,6 +2,7 @@ package co.edu.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,10 +25,42 @@ public class JdbcServlet extends HttpServlet{
 		
 		// get or post 요청을 구분해서 처리
 		// get이면 조회 . post이면 입력
-		Map<String, Object> result = dao.getEmpInfo(101);
-		Set<String> set = result.keySet(); // 키부분만 set 컬렉션
-		for(String key : set) {
-			System.out.println("key : " + key + ", val : " + result.get(key));
+		String eid = req.getParameter("empId");
+		
+		if(req.getMethod().equals("GET")) {
+			
+			Map<String, Object> result = dao.getEmpInfo(Integer.parseInt(eid));
+			
+			Set<String> set = result.keySet(); // 키부분만 set 컬렉션  
+			
+			for(String key : set) {
+				System.out.println("key : " + key + ", val : " + result.get(key));
+			}
+			
+		}else if(req.getMethod().equals("POST")) {
+			
+			String id = req.getParameter("empId");
+			String first = req.getParameter("first");
+			String last = req.getParameter("last");
+			String hire = req.getParameter("hire");
+			String job = req.getParameter("job");
+			String email = req.getParameter("email");
+			
+			// 영속계층의 기능 EmpDAO에
+			Map<String, Object> map = new HashMap<>();
+			dao = new EmpDAO();
+			map.put("eid", eid);
+			map.put("first", first);
+			map.put("last", last);
+			map.put("hire", hire);
+			map.put("job", job);
+			map.put("email", email);
+			
+			int result = dao.InsertEmpInfo(map);
+			System.out.println(result);
+			if(result>0) {
+				System.out.println("생성 성공");
+			}
 		}
 		
 		// 페이지 출력, 사번/이름(이름+성씨) / 급여 / 부서
@@ -38,11 +71,23 @@ public class JdbcServlet extends HttpServlet{
 		
 		out.print("<a href='temp.html'>조회-등록으로 이동</a>");
 		
-		out.println(result.get("id"));
-		out.println(result.get("firstName"));
-		out.println(result.get("lastName"));
-		out.println(result.get("salary"));
-		out.println(result.get("departmentId"));
+//		out.println(result.get("id"));
+//		out.println(result.get("firstName"));
+//		out.println(result.get("lastName"));
+//		out.println(result.get("salary"));
+//		out.println(result.get("departmentId"));
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
 		
 	}
 }
