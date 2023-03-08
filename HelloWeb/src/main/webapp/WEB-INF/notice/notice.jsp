@@ -1,41 +1,74 @@
 <%@page import="co.dev.vo.NoticeVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	
+
 <%@ include file="../include/sidebar.jsp" %>
 <%@ include file="../include/top.jsp" %>
-
 <%
-	NoticeVO vo = (NoticeVO) request.getAttribute("notice");
+  NoticeVO vo = (NoticeVO) request.getAttribute("notice");
 %>
+  <table class="table">
+    <tr>
+      <td>글번호</td>
+      <td><input type="text" name="nid" readonly value="<%=vo.getNoticeId() %>"></td>
+      <td>조회수 [ <b><%=vo.getHitCount() %></b> ]</td>
+    </tr>
+    <tr>
+      <td>제목</td>
+      <td colspan=2><input type="text" name="title" value="<%=vo.getNoticeTitle() %>"></td>
+    </tr>
+    <tr>
+      <td>작성자</td>
+      <td colspan=2><input type="text" name="writer" readonly value="<%=vo.getNoticeWriter() %>"></td>
+    </tr>
+    <tr>
+      <td>내용</td>
+      <td colspan=2><textarea cols="30" rows="5" name="subject"><%=vo.getNoticeSubject() %></textarea></td>
+    </tr>
+    <tr>
+      <td>파일</td>
+      <td colspan=2>
+      <% if (vo.getAttach() != null) { %>
+        <input type="text" name="attach" value="<%=vo.getAttach() %>">
+      <%} else { %>
+        <input type="text" name="attach">
+      <%} %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">
+      
+        <button id="modBtn">수정</button>
+        <button id="delBtn">삭제</button>
+      </td>
+    </tr>
+  </table>
 
-<form action="noticeAdd.do" method="post" enctype="multipart/form-data">
-	<table class="table">
-		<tr>
-			<td>글번호</td>
-			<td><input type="text" name="title" readonly value="<%=vo.getNoticeId()%>"></td>
-			<td>조회수 <b><%=vo.getHitCount() %></b></td>
-		</tr>
-		<tr>
-			<td>제목</td>
-			<td colspan=2><input type="text" name="title" value="<%=vo.getNoticeTitle()%>"></td>
-			<td>작성자</td><td><input type="text" name="writer" value="<%=vo.getNoticeWriter()%>"></td>
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td colspan="2"><textarea rows="5" cols="30" name="subject"><%=vo.getNoticeSubject()%>"></textarea></td>
-		</tr>
-		<tr>
-			<td>파일</td>
-			<%=if(vo.getAttach() != null) { %>
-				<input type="text" name="attach" value=""></td>
-			<% else %>
-		</tr>
-		<tr>						
-			<td colspan="2" align="center">
-				<input type="submit" value="저장">
-			</td>
-		</tr>
-	</table>	
+<form id="myFrm" action="noticeModify.do">
+  
 </form>
+<script>
+  document.querySelector('#modBtn').addEventListener('click',function(){
+    let myFrm = document.querySelector('#myFrm');
+    let nid = document.querySelector('input[name = "nid"]').value;
+    let title = document.querySelector('input[name="title"]').value;
+    let subject = document.querySelector('textarea[name="subject"]').textContent;
+    
+    myFrm.append(document.querySelector('input[name="nid"]'));
+    myFrm.append(document.querySelector('input[name="title"]'));
+    myFrm.append(document.querySelector('textarea[name="subject"]'));
+    console.log(myFrm);
+    myFrm.submit();
+  });
+    
+  // 삭제
+
+  document.querySelector('#delBtn').addEventListener('click',function(){
+    let myFrm = document.querySelector('#myFrm');
+    myFrm.action='noticeRemovo.do';
+    myFrm.append(document.querySelector('input[name="nid"]'));
+    myFrm.submit();
+
+  });
+</script>
 <%@ include file="../include/footer.jsp" %>

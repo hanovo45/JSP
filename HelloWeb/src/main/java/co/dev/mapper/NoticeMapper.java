@@ -13,6 +13,8 @@ public interface NoticeMapper {
 
 	public NoticeVO selectNotice(int nid);	// 단건조회
 	public int updateCount(int nid); 	    // 조회수 증가
+	public int getTotalCount();
+	public int updateNotice();				//()안의 값이 파라미터 타입? 
 	
 	
 }
