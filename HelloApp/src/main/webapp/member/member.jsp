@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Member</h3>
+	<h3>Tiles가 적용된 Member</h3>
 </body>
 </html>
