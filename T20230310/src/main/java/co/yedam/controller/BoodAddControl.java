@@ -46,7 +46,7 @@ public class BoodAddControl implements Command {
 			request.setAttribute("message", "예외임");
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/book/bookAddForm.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/book/bookList.jsp");
 		rd.forward(request, response);
 		
 //		private String bookCode;

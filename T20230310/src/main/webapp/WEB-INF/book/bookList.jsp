@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,28 +44,16 @@
                             <th>Price</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                  
+                    <c:forEach var="book" items="${list }">               
                         <tr>
-                            <td>P120000</td>
-                            <td>홍길동</td>
-                            <td>오리는 어느 친구인가?</td>
-                            <td>오리출판사</td>
-                            <td>25,000원</td>
+                            <td><a href="bookInfo.do?code=${book.bookCode}">${book.bookCode}</a></td>
+                            <td>${book.bookAuthor}</td>
+                            <td>${book.bookTitle}</td>
+                            <td>${book.bookPress}</td>
+                            <td>${book.bookPrice}</td>
                         </tr>
-                        <tr>
-                            <td>P120000</td>
-                            <td>홍길동</td>
-                            <td>오리는 어느 친구인가?</td>
-                            <td>오리출판사</td>
-                            <td>25,000원</td>
-                        </tr>
-                        <tr>
-                            <td>P120000</td>
-                            <td>홍길동</td>
-                            <td>오리는 어느 친구인가?</td>
-                            <td>오리출판사</td>
-                            <td>25,000원</td>
-                        </tr>
+                        </c:forEach>                 
                     </tbody>
                 </table>
             </div>

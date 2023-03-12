@@ -38,27 +38,27 @@
                     <tbody>
                         <tr>
                             <td>도서코드</td>
-                            <td><input type="text" name="book_code"></td>
+                            <td><input type="text" name="code"></td>
                         </tr>
                         <tr>
                             <td>저자</td>
-                            <td><input type="text" name="book_code"></td>
+                            <td><input type="text" name="author"></td>
                         </tr>
                         <tr>
                             <td>도서명</td>
-                            <td><input type="text" name="book_code"></td>
+                            <td><input type="text" name="title"></td>
                         </tr>
                         <tr>
                             <td>출판사</td>
-                            <td><input type="text" name="book_code"></td>
+                            <td><input type="text" name="press"></td>
                         </tr>
                         <tr>
                             <td>도서평</td>
-                            <td><textarea cols="30" rows="5" name="book_code"></textarea></td>
+                            <td><textarea cols="30" rows="5" name="desc"></textarea></td>
                         </tr>
                         <tr>
                             <td>판매가</td>
-                            <td><input type="text" name="book_code"></td>
+                            <td><input type="text" name="price"></td>
                         </tr>
                         <tr>
                             <td align="center" colspan="2">
