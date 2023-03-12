@@ -15,17 +15,20 @@ public class BookServiceMybatis implements BookService {
 
 	@Override
 	public List<BookVO> bookList() { //목록.
+		System.out.println("Mybatis bookList 왔음");
 		return mapper.bookList();
 	}
 
 	@Override
 	public boolean addBook(BookVO vo) { //등록.
-		return false;
+		System.out.println("Mybatis addBook 왔음");
+		int r = mapper.insertBook(vo);
+		return r == 1;
 	}
 
 	@Override
 	public BookVO getBookInfo(String bookCode) { //조회.
-		return null;
+		return mapper.selectBook(bookCode);
 	}
 
 }

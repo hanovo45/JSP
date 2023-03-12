@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 // connection 객체 : 서버에 미리 생성 (ex10개)
 // DataSource -> Resource 가져오는 룩업;
 // 객체를 계속만들면 리소스 부족.
+
 public class DataSource {
 	
 	// 싱글톤 방식
