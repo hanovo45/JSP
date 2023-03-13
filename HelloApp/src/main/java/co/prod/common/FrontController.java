@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.prod.controller.MemberListAjax;
 import co.prod.controller.MemberListControl;
 import co.prod.controller.MembersControl;
 import co.prod.controller.ProductInfoControl;
@@ -30,6 +31,9 @@ public class FrontController extends HttpServlet{
 		// url <-> control
 		map.put("/memberList.do", new MemberListControl());
 		map.put("/members.do", new MembersControl());
+		
+		// Ajax 호출(spa처리)
+		map.put("/memberListAjax.do", new MemberListAjax());
 		
 		// 상품목록
 		map.put("/productList.do", new ProductListControl());
@@ -51,11 +55,17 @@ public class FrontController extends HttpServlet{
 		
 		if(viewPage.endsWith(".jsp")) {		// memberList.do
 			viewPage = "/WEB-INF/views/" + viewPage;
-//		}else if(viewPage.endsWith(".tiles")){	// members.do
-			
+		}else if(viewPage.endsWith(".tiles")){	// members.do
+			viewPage = "/"+viewPage;
+		}else if(viewPage.endsWith(".ajax")) {
+			resp.setContentType("text/josn;charset=utf-8");
+//			resp.getWriter().append(viewPage);
+			resp.getWriter().append(viewPage.substring(0, viewPage.length()-5));
+			return;
 		}
+		System.out.println("최종요청 : "+viewPage);
 		
-		
+		// 페이지 재지정
 		RequestDispatcher rd = req.getRequestDispatcher(viewPage);
 		rd.forward(req, resp);
 		

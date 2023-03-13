@@ -20,8 +20,13 @@ public class BookListControl implements Command {
 			
 		BookService service = new BookServiceMybatis();
 		List<BookVO> list = service.bookList();
+//		for(BookVO i : list) {
+//			System.out.println(i );
+//		}
 		
-		request.setAttribute("book", list);
+//		request.setAttribute("book", list);
+		
+		request.setAttribute("list", list);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/book/bookList.jsp");
 		

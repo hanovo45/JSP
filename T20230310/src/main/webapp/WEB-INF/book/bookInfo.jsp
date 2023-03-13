@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,27 +39,27 @@
                     <tbody>
                         <tr>
                             <td>도서코드</td>
-                            <td><input type="text" name="bookCode" value=${Bcode.bookCode }></td>
+                            <td><input type="text" name="bookCode" value="${info.bookCode }"></td>
                         </tr>
                         <tr>
                             <td>저자</td>
-                            <td><input type="text" name="bookAuthor" value=${Bcode.bookAuthor }></td>
+                            <td><input type="text" name="bookAuthor" value="${info.bookAuthor }"></td>
                         </tr>
                         <tr>
                             <td>도서명</td>
-                            <td><input type="text" name="bookTitle" value=${Bcode.bookTitle }></td>
+                            <td><input type="text" name="bookTitle" value="${info.bookTitle }"></td>
                         </tr>
                         <tr>
                             <td>출판사</td>
-                            <td><input type="text" name="bookPress" value=${Bcode.bookPress }></td>
+                            <td><input type="text" name="bookPress" value="${info.bookPress }"></td>
                         </tr>
                         <tr>
                             <td>도서평</td>
-                            <td><textarea cols="30" rows="5" name="bookDesc">${Bcode.bookDesc }</textarea></td>
+                            <td><textarea cols="30" rows="5" name="bookDesc">${info.bookDesc }</textarea></td>
                         </tr>
                         <tr>
                             <td>판매가</td>
-                            <td><input type="text" name="bookPrice" value=${Bcode.bookPrice }></td>
+                            <td><input type="text" name="bookPrice" value="${info.bookPrice }원"></td>
                         </tr>
                         <tr>
                             <td align="center" colspan="2">

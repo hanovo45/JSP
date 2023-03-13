@@ -34,6 +34,7 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-12 col-lg-10 col-xl-8">
+            	${book }
                 <table class="table">
                     <thead>
                         <tr>
@@ -47,12 +48,14 @@
                     <tbody>                  
                     <c:forEach var="book" items="${list }">               
                         <tr>
-                            <td><a href="bookInfo.do?code=${book.bookCode}">${book.bookCode}</a></td>
+                        <form action="bookInfo.do">
+                            <td>${book.bookCode}</td>
                             <td>${book.bookAuthor}</td>
-                            <td>${book.bookTitle}</td>
+                            <td><a href="bookInfo.do?bcode=${book.bookCode}">${book.bookTitle}</a></td>
                             <td>${book.bookPress}</td>
                             <td>${book.bookPrice}</td>
                         </tr>
+                        </form>
                         </c:forEach>                 
                     </tbody>
                 </table>

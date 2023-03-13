@@ -16,13 +16,28 @@ public class BoodInfoControl implements Command {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		BookService service = new BookServiceMybatis();
 		String bcode = request.getParameter("bcode");
 		
-		System.out.println(bcode);
-		request.setAttribute("Bcode", bcode);
-		
+		request.setAttribute("info", service.getBookInfo(bcode));
 		request.getRequestDispatcher("WEB-INF/book/bookInfo.jsp").forward(request, response);
+		
+		
+		
+		
+		
+//		BookService service=new BookServiceMybatis();
+//		String code=request.getParameter("code");
+//		
+//		
+//		request.setAttribute("info", service.getBookInfo(code));
+//		
+//		request.getRequestDispatcher("WEB-INF/book/bookInfo.jsp").forward(request, response);
+		
+		
+		
+		
 	}
 
 }

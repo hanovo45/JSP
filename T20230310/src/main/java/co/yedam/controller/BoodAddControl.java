@@ -17,8 +17,7 @@ public class BoodAddControl implements Command {
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		BookService service = new BookServiceMybatis();
-		BookVO vo = new BookVO();
+		
 		
 		String code = request.getParameter("code");
 		String title = request.getParameter("title");
@@ -27,6 +26,7 @@ public class BoodAddControl implements Command {
 		String desc = request.getParameter("desc");
 		String price = request.getParameter("price");
 		
+		BookVO vo = new BookVO();
 		vo.setBookCode(code);
 		vo.setBookTitle(title);
 		vo.setBookAuthor(author);
@@ -35,19 +35,20 @@ public class BoodAddControl implements Command {
 		vo.setBookPrice(price);
 		System.out.println("입력 : " + vo);
 		
-		boolean result =  service.addBook(vo);
-		System.out.println(result);
+		BookService service = new BookServiceMybatis();
 		
-		if(result == true) {
+		if(service.addBook(vo)) {
 			System.out.println("성공");
-			request.setAttribute("message", "성공함");
-		}else {
-			System.out.println("예외");
-			request.setAttribute("message", "예외임");
+			response.sendRedirect("bookList.do");
+			request.getRequestDispatcher("WEB-INF/book/bookAddForm.jsp").forward(request, response);
+//		}else {
+//			System.out.println("예외");
+////			request.setAttribute("message", "예외임");
+//			request.getRequestDispatcher("WEB-INF/book/bookAddForm.jsp").forward(request, response);
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/book/bookList.jsp");
-		rd.forward(request, response);
+//		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/book/bookList.jsp");
+//		rd.forward(request, response);
 		
 //		private String bookCode;
 //		private String bookTitle;
